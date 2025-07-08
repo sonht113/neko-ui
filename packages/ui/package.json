@@ -1,6 +1,6 @@
 {
   "name": "@nuicoder/neko-ui",
-  "version": "0.1.13",
+  "version": "0.1.0",
   "private": false,
   "exports": {
     "./*": "./src/*.tsx",
@@ -9,14 +9,25 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/style.css",
+    "./themes/neko-orange.css": "./dist/themes/neko-orange.css",
+    "./themes/neko-lavender.css": "./dist/themes/neko-lavender.css",
+    "./themes/neko-pink.css": "./dist/themes/neko-pink.css",
+    "./themes/neko-mint.css": "./dist/themes/neko-mint.css",
+    "./themes/neko-neutral.css": "./dist/themes/neko-neutral.css"
   },
   "files": [
     "dist"
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm",
-    "build:css": "postcss src/styles/theme.css -o dist/style.css",
+    "build:css": "postcss src/styles/style.css -o dist/style.css",
+    "build:themes": "npm run build:lavender && npm run build:mint && npm run build:orange && npm run build:pink && npm run build:neutral",
+    "build:lavender": "postcss src/styles/themes/neko-lavender.css -o dist/themes/neko-lavender.css",
+    "build:mint": "postcss src/styles/themes/neko-mint.css -o dist/themes/neko-mint.css",
+    "build:orange": "postcss src/styles/themes/neko-orange.css -o dist/themes/neko-orange.css",
+    "build:pink": "postcss src/styles/themes/neko-pink.css -o dist/themes/neko-pink.css",
+    "build:neutral": "postcss src/styles/themes/neko-neutral.css -o dist/themes/neko-neutral.css",
     "build:all": "pnpm build && pnpm build:css",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
